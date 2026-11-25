@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1677d2">
+<title>AI DOCTOR — AI in Medicine</title>
+<style>
+:root{--blue:#1677d2;--navy:#173b5e;--ink:#172536;--muted:#64748b;--bg:#f4f8fc;--line:#dce6f0}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+header{background:linear-gradient(120deg,#1677d2,#173b5e);color:white;padding:28px 20px 36px}
+.wrap{max-width:980px;margin:auto}
+.brand{font-weight:800;letter-spacing:1.5px;font-size:19px}
+.hero{padding:38px 0 10px}
+.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.08;margin:0 0 14px}
+.hero p{max-width:620px;color:#e5f1ff;font-size:17px;margin:0}
+nav{display:flex;gap:18px;flex-wrap:wrap;margin-top:24px}
+nav a{color:white;text-decoration:none;font-weight:700}
+main{max-width:980px;margin:26px auto;padding:0 16px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:20px;box-shadow:0 8px 24px #173b5e0b}
+h2{margin:0 0 8px;font-size:25px}
+.sub{color:var(--muted);margin:0 0 18px}
+.chatbox{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fbfdff}
+.messages{height:310px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.msg{max-width:88%;padding:11px 14px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.bot{background:#eaf3fc;align-self:flex-start}
+.user{background:var(--blue);color:white;align-self:flex-end}
+form{display:flex;gap:10px;padding:12px;border-top:1px solid var(--line);background:white}
+input{min-width:0;flex:1;border:1px solid #cbd8e6;border-radius:11px;padding:13px;font-size:16px}
+button{border:0;border-radius:11px;background:var(--blue);color:white;font-weight:700;padding:0 20px;font-size:16px}
+button:disabled{opacity:.55}
+.note{font-size:13px;color:var(--muted);margin:12px 0 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.tile{padding:17px;border:1px solid var(--line);border-radius:14px;background:#fbfdff}
+.tile h3{margin:0 0 6px;color:var(--navy)}
+.tile p{margin:0;color:var(--muted)}
+footer{text-align:center;color:var(--muted);padding:22px;font-size:13px}
+@media(max-width:560px){.panel{padding:16px}.messages{height:340px}form{gap:7px}button{padding:0 14px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="brand">✚ AI DOCTOR</div>
+  <div class="hero">
+   <h1>Artificial Intelligence<br>in Medicine</h1>
+   <p>Explore how AI can support medical education, research, and healthcare technology.</p>
+  </div>
+  <nav><a href="#assistant">AI Assistant</a><a href="#learn">Explore AI in Medicine</a><a href="#about">About</a></nav>
+ </div>
+</header>
+<main>
+ <section class="panel" id="assistant">
+  <h2>AI Learning Assistant</h2>
+  <p class="sub">Ask educational questions about medical science and the use of AI in healthcare.</p>
+  <div class="chatbox">
+   <div class="messages" id="messages" aria-live="polite">
+    <div class="msg bot">Hello! I can explain medical and biology concepts, medical technologies, and how artificial intelligence is used in healthcare. What would you like to learn?</div>
+   </div>
+   <form id="chatForm">
+    <input id="question" type="text" placeholder="Ask an educational question..." autocomplete="off" required>
+    <button id="send" type="submit">Send</button>
+   </form>
+  </div>
+  <p class="note">Educational demonstration only. This assistant is not a doctor and cannot diagnose conditions, recommend treatment, or handle emergencies. Do not enter personal or private medical information.</p>
+ </section>
+ <section class="panel" id="learn">
+  <h2>Explore AI in Medicine</h2>
+  <p class="sub">Examples of areas where AI tools are being researched and used with professional oversight.</p>
+  <div class="grid">
+   <article class="tile"><h3>Medical Imaging</h3><p>AI can help specialists analyze medical images and highlight patterns for review.</p></article>
+   <article class="tile"><h3>Medical Research</h3><p>AI can help researchers organize scientific information and study complex data.</p></article>
+   <article class="tile"><h3>Remote Monitoring</h3><p>Digital systems can help care teams review health measurements collected over time.</p></article>
+   <article class="tile"><h3>Personalized Care</h3><p>AI research explores how data may help professionals plan care while protecting privacy.</p></article>
+  </div>
+ </section>
+ <section class="panel" id="about">
+  <h2>About this project</h2>
+  <p>This student project introduces the role of artificial intelligence in modern medicine. AI systems can support healthcare professionals, but their results require human review, careful testing, and responsible use.</p>
+ </section>
+</main>
+<footer>AI DOCTOR · AI in Medicine School Project</footer>
+<script>
+const form=document.getElementById('chatForm');
+const input=document.getElementById('question');
+const messages=document.getElementById('messages');
+const send=document.getElementById('send');
+function addMessage(text,kind){
+ const item=document.createElement('div');
+ item.className='msg '+kind;
+ item.textContent=text;
+ messages.appendChild(item);
+ messages.scrollTop=messages.scrollHeight;
+}
+form.addEventListener('submit',async(event)=>{
+ event.preventDefault();
+ const question=input.value.trim();
+ if(!question)return;
+ addMessage(question,'user');
+ input.value='';
+ send.disabled=true;
+ send.textContent='...';
+ addMessage('Connecting to the learning assistant…','bot');
+ const waiting=messages.lastElementChild;
+ try{
+  const response=await fetch('/api/chat',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({message:question})
+  });
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.error||'The assistant is not available yet.');
+  waiting.textContent=data.reply||'I could not create a response. Please try again.';
+ }catch(error){
+  waiting.textContent='The AI service is not connected yet. The website interface is ready, but a secure server connection still needs to be configured.';
+ }finally{
+  send.disabled=false;
+  send.textContent='Send';
+  messages.scrollTop=messages.scrollHeight;
+ }
+});
+</script>
+</body>
+</html>
