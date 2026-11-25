@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eff7ff">
+<title>AI Doctor — Smart Health Assistant</title>
+<style>
+:root{--blue:#1677d2;--navy:#173b5e;--pale:#eaf4ff;--ink:#203247;--muted:#65788c;--line:#dce8f3;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:#f5f9fd;color:var(--ink)}
+header{background:linear-gradient(120deg,#e8f4ff,#fff);border-bottom:1px solid var(--line);padding:18px max(20px,calc((100% - 1080px)/2));display:flex;align-items:center;justify-content:space-between;gap:14px;position:sticky;top:0;z-index:2}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;color:var(--navy);letter-spacing:-.5px}.logo{width:38px;height:38px;border-radius:12px;background:var(--blue);color:white;display:grid;place-items:center;font-size:24px}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a{color:#42617f;text-decoration:none;padding:9px 12px;border-radius:10px;font-size:14px;font-weight:650}nav a:hover{background:#dceeff;color:var(--blue)}
+main{max-width:1080px;margin:auto;padding:34px 20px 60px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;background:linear-gradient(130deg,#e6f3ff,#fff);border:1px solid var(--line);border-radius:25px;padding:34px;overflow:hidden}
+.eyebrow{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:12px}
+h1{font-size:clamp(34px,5vw,54px);line-height:1.05;letter-spacing:-1.8px;color:var(--navy);margin:12px 0}
+.hero p{color:var(--muted);font-size:17px;line-height:1.65;max-width:570px}
+.hero-art{min-height:210px;border-radius:22px;background:radial-gradient(circle at 50% 35%,#fff 0 20%,transparent 21%),linear-gradient(145deg,#c9e5ff,#edf7ff);display:grid;place-items:center;color:var(--blue);font-size:100px}
+.btn{display:inline-block;border:0;border-radius:12px;background:var(--blue);color:white;padding:12px 17px;font-weight:750;text-decoration:none;cursor:pointer;font-size:14px}.btn:hover{background:#0865b8}
+.notice{margin:22px 0;padding:14px 16px;border:1px solid #f0d99b;background:#fff9e9;border-radius:14px;color:#735a19;font-size:13px;line-height:1.55}
+.section{margin-top:38px}.section-head{margin-bottom:16px}.section-head h2{color:var(--navy);font-size:25px;margin:0 0 6px}.section-head p{margin:0;color:var(--muted);line-height:1.5}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:0 5px 20px #173b5e08}.card .icon{width:43px;height:43px;border-radius:13px;background:var(--pale);display:grid;place-items:center;font-size:22px;margin-bottom:13px}.card h3{margin:0 0 8px;color:var(--navy)}.card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:23px;box-shadow:0 8px 24px #173b5e08}
+label{display:block;font-weight:700;margin:15px 0 8px}select,textarea,input{width:100%;padding:13px;border:1px solid #cbdbea;border-radius:11px;background:white;color:var(--ink);font:inherit}textarea{min-height:95px;resize:vertical}.result{margin-top:16px;background:#eff7ff;border:1px solid #d6eaff;border-radius:13px;padding:15px;line-height:1.6;display:none}.result strong{color:var(--navy)}
+.library{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.library article{padding:17px;border-radius:15px;border:1px solid var(--line);background:white}.library h3{margin:0 0 7px;color:var(--navy);font-size:16px}.library p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+footer{text-align:center;color:#8293a4;padding:28px 20px;border-top:1px solid var(--line);font-size:13px}
+@media(max-width:720px){header{align-items:flex-start;flex-direction:column}nav{gap:2px}.hero{grid-template-columns:1fr;padding:24px}.hero-art{min-height:130px;font-size:72px}.grid{grid-template-columns:1fr}.library{grid-template-columns:1fr}main{padding-top:20px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">✚</span> AI DOCTOR</div>
+  <nav><a href="#home">Home</a><a href="#checker">Symptom Checker</a><a href="#assistant">Assistant</a><a href="#library">Medical Library</a></nav>
+</header>
+<main>
+<section class="hero" id="home">
+  <div><div class="eyebrow">AI in Medicine · Student Project</div>
+    <h1>Your Health,<br>Our Intelligence.</h1>
+    <p>Discover how artificial intelligence can support healthcare professionals, organize medical information and make health education easier to explore.</p>
+    <a class="btn" href="#checker">Explore the demo</a>
+  </div>
+  <div class="hero-art" aria-label="Medical cross illustration">✚</div>
+</section>
+<div class="notice"><strong>Educational demo only:</strong> This website does not use real AI and cannot diagnose, treat or assess a medical condition. Its sample responses are general information, not medical advice. For health concerns, speak with a qualified healthcare professional. If someone may be in immediate danger, contact local emergency services.</div>
+<section class="section" id="checker">
+  <div class="section-head"><h2>Symptom Checker Demo</h2><p>Choose an example to see how a digital health information tool might organize general information.</p></div>
+  <div class="panel">
+    <label for="symptom">Choose an example</label>
+    <select id="symptom"><option value="">Select a topic…</option><option value="headache">Headache</option><option value="cough">Cough</option><option value="sore">Sore throat</option><option value="fever">Fever</option><option value="stomach">Stomach discomfort</option></select>
+    <button class="btn" style="margin-top:14px" onclick="showInfo()">Show educational information</button>
+    <div class="result" id="result" role="status" aria-live="polite"></div>
+  </div>
+</section>
+<section class="section" id="assistant">
+  <div class="section-head"><h2>AI Assistant — Sample Questions</h2><p>This is a prepared demonstration, not a live AI chatbot.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">🧠</div><h3>What is medical AI?</h3><p>AI systems can help analyze information, recognize patterns and support some healthcare workflows.</p></article>
+    <article class="card"><div class="icon">🩻</div><h3>How can AI help doctors?</h3><p>Some tools can help review medical images or organize information, while clinicians remain responsible for decisions.</p></article>
+    <article class="card"><div class="icon">🤝</div><h3>Can AI replace doctors?</h3><p>No. AI can be a support tool, but human expertise, communication and clinical judgment are essential.</p></article>
+  </div>
+</section>
+<section class="section" id="library">
+  <div class="section-head"><h2>Medical Library</h2><p>Explore a few ways AI is used in healthcare.</p></div>
+  <div class="library">
+    <article><h3>Medical Imaging</h3><p>AI tools can help specialists examine X-rays, CT scans and other images for patterns that need attention.</p></article>
+    <article><h3>Drug Research</h3><p>Researchers use computational tools, including AI, to study molecules and support parts of the drug-discovery process.</p></article>
+    <article><h3>Remote Monitoring</h3><p>Some digital systems can help track health measurements and flag changes for a care team to review.</p></article>
+    <article><h3>Personalized Care</h3><p>When carefully validated, data tools may help clinicians consider information relevant to an individual patient.</p></article>
+  </div>
+</section>
+</main>
+<footer>AI DOCTOR · AI in Medicine School Project · Educational use only</footer>
+<script>
+const info={
+ headache:["Headache","Headaches can have many causes, such as stress, lack of sleep or dehydration. This demo cannot determine the cause. A new, severe or worrying headache should be discussed with a healthcare professional."],
+ cough:["Cough","A cough can occur with common respiratory infections, allergies or irritation. This demo cannot identify the cause. Ask a healthcare professional if it persists, worsens or causes concern."],
+ sore:["Sore throat","A sore throat may be associated with infections, allergies or irritation. This demo cannot tell which cause applies. Seek professional advice if symptoms are severe, persistent or worrying."],
+ fever:["Fever","Fever can happen for many reasons, including infections. Consider advice from a qualified healthcare professional, especially for a very young child or if there are other concerning symptoms."],
+ stomach:["Stomach discomfort","Stomach discomfort has many possible causes. This demo cannot assess it. Speak with a healthcare professional if it is severe, persistent or worrying."]
+};
+function showInfo(){const key=document.getElementById('symptom').value;const box=document.getElementById('result');if(!key){box.style.display='block';box.innerHTML='<strong>Please choose a topic first.</strong>';return;}const item=info[key];box.style.display='block';box.innerHTML='<strong>'+item[0]+'</strong><br>'+item[1]+'<br><br><strong>Remember:</strong> This is general educational information, not a diagnosis.';}
+</script>
+</body>
+</html>
